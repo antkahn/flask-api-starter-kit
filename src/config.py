@@ -4,7 +4,7 @@ import logging
 DEBUG = os.getenv('ENVIRONEMENT') == 'DEV'
 APPLICATION_ROOT = os.getenv('APPLICATION_APPLICATION_ROOT', '/application')
 HOST = os.getenv('APPLICATION_HOST')
-PORT = int(os.getenv('APPLICATION_PORT'))
+PORT = int(os.getenv('APPLICATION_PORT', '3000'))
 
 DB_CONTAINER = os.getenv('APPLICATION_DB_CONTAINER', 'DB')
 POSTGRES = {
