@@ -30,7 +30,7 @@ module.exports = function (shipit) {
         return shipit.start('install');
     });
 
-    if(shipit.environment.indexOf(['prod','preprod','integration'])) {
+    if(shipit.environment.indexOf(['prod'])) {
       require('./devops/deploy/prod.js')(shipit);
     } else {
       console.log("Unknwown environment: " + shipit.environment);
