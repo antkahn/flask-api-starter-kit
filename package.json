@@ -1,0 +1,22 @@
+{
+  "name": "example-api",
+  "version": "0.0.1",
+  "scripts": {
+    "deploy:prod": "./node_modules/.bin/shipit prod deploy",
+    "bdd:connect": "docker exec -it investmentadvisorapi_db_1 psql -Upostgres",
+    "bdd:downgrade": "docker-compose run --rm server python src/manage.py db downgrade",
+    "bdd:migrate": "docker-compose run --rm server python src/manage.py db migrate",
+    "bdd:upgrade": "docker-compose run --rm server python src/manage.py db upgrade",
+    "lint": "docker-compose run --rm server python vendor/bin/pep8 && docker-compose run --rm server python vendor/bin/flake8 ./src",
+    "rollback:prod": "./node_modules/.bin/shipit prod rollback",
+    "server:daemon": "docker-compose up -d server",
+    "server:install": "docker-compose run --rm server pip install -r requirements.txt --user --upgrade",
+    "server:run": "docker-compose up server",
+    "test": "docker-compose run --rm testserver"
+  },
+  "devDependencies": {
+    "shipit-cli": "1.2.1",
+    "shipit-deploy": "2.0.0",
+    "shipit-submodule": "1.0.0"
+  }
+}

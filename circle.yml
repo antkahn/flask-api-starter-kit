@@ -1,0 +1,17 @@
+machine:
+    python:
+        version: 3.4.2
+    environment:
+        PYTHONPATH: src:test
+        APPLICATION_POSTGRES_USER: ubuntu
+        APPLICATION_POSTGRES_HOST: 127.0.0.1
+        APPLICATION_POSTGRES_PORT: 5432
+        APPLICATION_POSTGRES_DB: circle_test
+database:
+    override:
+        - python src/manage.py db upgrade
+test:
+    override:
+        - pep8
+        - flake8 ./src
+        - python -m unittest

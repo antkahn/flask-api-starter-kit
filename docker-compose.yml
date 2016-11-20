@@ -1,0 +1,46 @@
+server:
+  env_file:
+    - .env
+  image: python:3.4
+  working_dir: /mnt
+  volumes:
+    - .:/mnt
+  links:
+   - db
+  ports:
+    - '3000:3000'
+  environment:
+    PYTHONPATH: $PYTHONPATH:src
+    PYTHONUSERBASE: /mnt/vendor
+    IMPORT_PATH: /mnt/test/fixture
+  command: python src/server.py
+  env_file:
+    - .env
+
+dbdata:
+  image: busybox
+  volumes:
+  - /var/lib/postgresql/data
+db:
+  image: postgres:9.4
+  volumes_from:
+  - dbdata
+
+testserver:
+  image: python:3.4
+  working_dir: /mnt
+  volumes:
+    - .:/mnt
+  links:
+    - testdb
+  ports:
+    - '5053:5053'
+  environment:
+    PYTHONPATH: $PYTHONPATH:src:test
+    PYTHONUSERBASE: /mnt/vendor
+    APPLICATION_PORT: 5053
+    APPLICATION_DB_CONTAINER: TESTDB
+  command: python -m unittest
+
+testdb:
+  image: postgres:9.4

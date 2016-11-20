@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.Python
+vendor/
+node_modules/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+*.log
