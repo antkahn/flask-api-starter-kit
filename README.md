@@ -28,13 +28,13 @@ $ git clone https://github.com/antkahn/flask-api-starter-kit.git <my-project-nam
 $ cd <my-project-name>
 ```
 
-Then install dependencies and check to see it works
+Then install dependencies and check that it works
 
 ```bash
 $ npm run server:install      # Install the pip dependencies on the docker container
 $ npm run server:run          # Run the container containing your local python server
 ```
-If everything works, you should see the routes [here](http://127.0.0.1:3000/application/routes).
+If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/routes).
 
 ## Commands
 
@@ -43,15 +43,15 @@ While developing, you will probably rely mostly on `npm run server:run`; however
 |`npm run <script>`|Description|
 |------------------|-----------|
 |`server:install`|Install the pip dependencies on the server's container.|
-|`server:run`|Run your local server on it's own docker container.|
-|`server:daemon`|Run your local server on it's own docker container as a daemon.|
-|`bdd:connect`|Connects you to your local database.|
-|`bdd:migrate`|Generate a database migration file using alembic, based on your models file.|
+|`server:run`|Run your local server in it's own docker container.|
+|`server:daemon`|Run your local server in it's own docker container as a daemon.|
+|`bdd:connect`|Connect to your docker database.|
+|`bdd:migrate`|Generate a database migration file using alembic, based on your model files.|
 |`bdd:upgrade`|Run the migrations until your database is up to date.|
-|`bdd:downgrade`|Downgrade your database of the last migration run.|
-|`test`|Runs unit tests with unittest on it's own container.|
-|`lint`|Run pep8 and flake8 and the `src` directory.|
-|`deploy:prod`|Deploys your code on your server using shipit.|
+|`bdd:downgrade`|Downgrade your database by one migration.|
+|`test`|Run unit tests with unittest in it's own container.|
+|`lint`|Run pep8 and flake8 on the `src` directory.|
+|`deploy:prod`|Deploy your code onto your server using shipit.|
 |`rollback:prod`|Rollback your last deployment on the server using shipit.|
 
 ## Application Structure
@@ -69,15 +69,15 @@ The application structure presented in this boilerplate is grouped primarily by 
 │   │   └── abc.py           # Abstract base class model
 │   ├── repositories         # Python classes allowing you to interact with your models
 │   ├── resources            # Python classes containing the HTTP verbs of your routes
-│   ├── routes               # Routes definitions and link to their associated resources
+│   ├── routes               # Routes definitions and links to their associated resources
 │   │   ├── __init__.py      # Contains every blueprint of your API
-│   │   └── routes.py        # The routes blueprint exposing your routes and HTTP verbs
-│   ├── util                 # Python functions to be used in your project
+│   │   └── routes.py        # The routes blueprints exposing your routes and HTTP verbs
+│   ├── util                 # Some helpfull, non-business Python functions for your project
 │   │   └── parse_params.py  # Wrapper for the resources to easily handle parameters
 │   ├── config.py            # Project configuration settings
 │   ├── manage.py            # Project commands
 │   └── server.py            # Server configuration
-└── test                     # Unit tests
+└── test                     # Unit tests source code
 ```
 
 ## Development
@@ -89,11 +89,12 @@ $ npm run server:run           # Create the containers containing your python se
 $ npm run server:daemon        # Create the containers containing your python server as a daemon
 ```
 
-The containers will adapt by themselves as your source code is changed.
+The containers will reload by themselves as your source code is changed.
 You can check the logs in the `./server.log` file.
 
 ## Testing
-To add a unit test, simply create a `test_*.py` file anywhere in `~/test`, prefix your test classes with `Test` and your test methods with `test_`. Unittest will run them automaticaly.
+
+To add a unit test, simply create a `test_*.py` file anywhere in `./test/`, prefix your test classes with `Test` and your testing methods with `test_`. Unittest will run them automaticaly.
 You can add objects in your database that will only be used in your tests, see example.
 You can run your tests in their own container with the command:
 
@@ -102,4 +103,5 @@ $ npm run test
 ```
 
 ## Deployment
-Out of the box, this starter kit is deployable using shipit. Simply change the configuration lines in the `./shipit.js` file.
+
+Out of the box, this starter kit is deployable using Shipit. Simply change the configuration lines in the `./shipit.js` file.
