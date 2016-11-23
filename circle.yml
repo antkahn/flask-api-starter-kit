@@ -12,6 +12,6 @@ database:
         - python src/manage.py db upgrade
 test:
     override:
-        - pep8
+        - pep8 ./src
         - flake8 ./src
         - python -m unittest

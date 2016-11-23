@@ -7,7 +7,10 @@ from flask.ext.restful import reqparse
 
 
 def parse_params(*arguments):
-    """ Parse the parameters, forward them to the wrapped function as named parameters """
+    """
+    Parse the parameters
+    Forward them to the wrapped function as named parameters
+    """
     def parse(func):
         """ Wrapper """
         @wraps(func)

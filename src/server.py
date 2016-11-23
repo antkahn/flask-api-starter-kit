@@ -38,7 +38,10 @@ db.app = server
 
 for blueprint in vars(route).values():
     if isinstance(blueprint, Blueprint):
-        server.register_blueprint(blueprint, url_prefix=config.APPLICATION_ROOT)
+        server.register_blueprint(
+            blueprint,
+            url_prefix=config.APPLICATION_ROOT
+        )
 
 if __name__ == '__main__':
     server.run(host=config.HOST, port=config.PORT)
