@@ -4,7 +4,7 @@ from flasgger import Swagger
 
 import config
 from models import db
-import route
+import routes
 
 # config your API specs
 # you can define multiple specs in the case your api has multiple versions
@@ -36,7 +36,7 @@ server.config['SQLALCHEMY_DATABASE_URI'] = config.DB_URI
 db.init_app(server)
 db.app = server
 
-for blueprint in vars(route).values():
+for blueprint in vars(routes).values():
     if isinstance(blueprint, Blueprint):
         server.register_blueprint(
             blueprint,

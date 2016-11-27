@@ -11,7 +11,7 @@
     "rollback:prod": "./node_modules/.bin/shipit prod rollback",
     "server:daemon": "docker-compose up -d server",
     "server:install": "docker-compose run --rm server pip install -r requirements.txt --user --upgrade",
-    "server:run": "docker-compose up server",
+    "server:up": "docker-compose up server",
     "test": "docker-compose run --rm testserver"
   },
   "devDependencies": {
