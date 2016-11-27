@@ -12,6 +12,8 @@ The primary goal of this project is to remain as **unopinionated** as possible. 
 1. [Application Structure](#application-structure)
 1. [Development](#development)
 1. [Testing](#testing)
+1. [Lint](#lint)
+1. [Swagger](#swagger)
 1. [Deployment](#deployment)
 
 ## Dependencies
@@ -122,6 +124,23 @@ You can run your tests in their own container with the command:
 ```bash
 $ npm run test
 ```
+
+## Lint
+
+To lint your code using pep8 and flake8, just run in your terminal:
+
+```bash
+$ npm run lint
+```
+
+It will run the pep8 and flake8 commands on your `./src` directory in your server container, and display any lint error you may have in your code.
+
+## Swagger
+
+Your API might need a description of it's routes and how to interact with them.
+You can easily do that with the swagger package included in the starter kit.
+Simply add a docstring to the resources of your API like in the `user` example.
+The API description will be available [here](http://127.0.0.1:3000/application/spec).
 
 ## Deployment
 
