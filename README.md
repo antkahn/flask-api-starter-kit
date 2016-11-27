@@ -1,6 +1,4 @@
-# Flask Api Starter Kit
-
-[![CircleCI](https://circleci.com/gh/antkahn/flask-api-starter-kit/tree/master.svg?style=svg)](https://circleci.com/gh/antkahn/flask-api-starter-kit/tree/master)
+# Flask Api Starter Kit [![CircleCI](https://circleci.com/gh/antkahn/flask-api-starter-kit/tree/master.svg?style=svg)](https://circleci.com/gh/antkahn/flask-api-starter-kit/tree/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/antkahn/flask-api-starter-kit/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/antkahn/flask-api-starter-kit/?branch=master)
 
 This starter kit is designed to allow you to create very fast your Flask API.
 
@@ -48,10 +46,10 @@ While developing, you will probably rely mostly on `npm run server:run`; however
 |`server:install`|Install the pip dependencies on the server's container.|
 |`server:run`|Run your local server in it's own docker container.|
 |`server:daemon`|Run your local server in it's own docker container as a daemon.|
-|`bdd:connect`|Connect to your docker database.|
-|`bdd:migrate`|Generate a database migration file using alembic, based on your model files.|
-|`bdd:upgrade`|Run the migrations until your database is up to date.|
-|`bdd:downgrade`|Downgrade your database by one migration.|
+|`db:connect`|Connect to your docker database.|
+|`db:migrate`|Generate a database migration file using alembic, based on your model files.|
+|`db:upgrade`|Run the migrations until your database is up to date.|
+|`db:downgrade`|Downgrade your database by one migration.|
 |`test`|Run unit tests with unittest in it's own container.|
 |`lint`|Run pep8 and flake8 on the `src` directory.|
 |`deploy:prod`|Deploy your code onto your server using shipit.|

@@ -1,8 +1,5 @@
 module.exports = function (shipit) {
-  var supervisorService = shipit.config.fullServiceName
-
   shipit.blTask('initVirtualenv', function() {
-    oldVenv = shipit.currentPath + "/venv"
     return shipit.remote(
       "cd " + shipit.releasePath +
       " && virtualenv venv -p /usr/bin/python3" +
@@ -31,10 +28,11 @@ module.exports = function (shipit) {
   });
 
   shipit.blTask('install', function() {
+    var tasks
     if(shipit.config.hasDatabase){
-      var tasks = ['installVendors', 'upgradeDatabase', 'restartServer']
+      tasks = ['installVendors', 'upgradeDatabase', 'restartServer']
     } else {
-      var tasks = ['installVendors', 'restartServer']
+      tasks = ['installVendors', 'restartServer']
     }
     shipit.start(tasks, function(err) {
       if(!err){

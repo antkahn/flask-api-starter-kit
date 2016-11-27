@@ -33,7 +33,7 @@ module.exports = function (shipit) {
     if(shipit.environment.indexOf(['prod'])) {
       require('./devops/deploy/prod.js')(shipit);
     } else {
-      console.log("Unknwown environment: " + shipit.environment);
+      shipit.log("Unknwown environment: " + shipit.environment);
       exit(1);
     }
 };
