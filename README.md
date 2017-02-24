@@ -4,6 +4,9 @@ This starter kit is designed to allow you to create very fast your Flask API.
 
 The primary goal of this project is to remain as **unopinionated** as possible. Its purpose is not to dictate your project structure or to demonstrate a complete sample application, but to provide a set of tools intended to make back-end development robust, easy, and, most importantly, fun.
 
+This starter kit comes with a [tutorial](https://github.com/antkahn/flask-api-starter-kit/blob/tutorial/doc/installation.md).
+Check it out if you want a quick tutorial on how to use Flask with this architecure.
+
 ## Table of Contents
 1. [Dependencies](#dependencies)
 1. [Getting Started](#getting-started)
