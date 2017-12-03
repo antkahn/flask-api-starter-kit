@@ -3,11 +3,11 @@
 So, we created a route! Awesome! But it doesn't do much quite yet.
 In almost all our APIs, we have a database. Let's create one of our own!
 
-As you might have seen when you started your docker, a `bnponboardingapi_db_1` container was created.
+As you might have seen when you started your docker, a `flaskapistarterkit_db_1` container was created.
 This container contains a database ! You can connect to it by running :
 
 ```
-npm run db:connect
+make db/connect
 ```
 
 We use postgres for our databases. Here are some commands you could use:
@@ -83,14 +83,14 @@ You can see that the migrations/versions folder is not empty, it already contain
 
 Run in a terminal:
 ```
-npm run db:upgrade
+make db/upgrade
 ```
 
 It will setup your database by running the first migration.
 
 Then, to create the migration for the User model run:
 ```
-npm run db:migrate
+make db/migrate
 ```
 
 As you can see, a new `version` was created.
@@ -134,7 +134,7 @@ As you can see, we adapted the automaticaly generated file. We:
 
 Now, we can update tell alembic to update our database:
 ```
-npm run db:upgrade
+make db/upgrade
 ```
 
 Now, if you connect to the database, you can see that we have a new user table!
@@ -143,7 +143,7 @@ A good practice is to upgrade, downgrade and upgrade again to make sure your mig
 
 To downgrade, simply run:
 ```
-npm run db:downgrade
+make db/downgrade
 ```
 
 ## The repository
@@ -249,14 +249,9 @@ class TestUser(unittest.TestCase):
         db.session.remove()
         db.drop_all()
 
-    @classmethod
-    def tearDownClass(cls):
-        db.session.remove()
-        db.drop_all()
-
     def test_get(self):
         response = self.client.get(
-            '/onboarding/user',
+            '/application/user',
             content_type='application/json'
         )
 
@@ -286,7 +281,7 @@ What is important here:
 So here, we call our route `/user` with the method get, we check that we have a 200 HTTP code, and we check that the response is as expected.
 Run:
 ```
-npm run test
+make test
 ```
 
 The tests pass! If they do not, verify that you copied the code correctly.
@@ -300,11 +295,6 @@ Now, try to change the test by adding a second user in the test database in the 
 
 Now, you have all the tools you need to create all the routes you want ! Try to create a post method on the `/user` route, to create a user in the database!
 Do not forget to write the corresponding test!
-Once you've done that, have a member of your team read the code you wrote and give you feedback.
-
-Some help:
- * Passing post arguments to a function: https://github.com/theodo/bnp-quiz-api/blob/4d985b025ce9050dad9b306289cd3ba0a9748952/src/resource/quiz_result.py#L16
- * Testing the post: https://github.com/theodo/bnp-quiz-api/blob/4d985b025ce9050dad9b306289cd3ba0a9748952/test/api/test_quiz_result.py#L50
 
 Once you're done, you should be ready to start your own project, we hope you found the tutorial usefull!
 Feel free to open a PR if you feel anything is missing.

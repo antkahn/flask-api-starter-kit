@@ -52,13 +52,13 @@ And add the following line in the `resources/__init__.py` file:
 from .user import UserResource
 ```
 
-Then you can go to this url: [http://127.0.0.1:5055/onboarding/user](http://127.0.0.1:5055/onboarding/user).
+Then you can go to this url: [http://127.0.0.1:3000/application/user](http://127.0.0.1:3000/application/user).
 We have a route!
 
 So what did we do here?
 
 First, we added a BLUEPRINT to our server. We defined a `USER_BLUEPRINT` (if you want more docs about blueprints and flask restful, go [here](http://flask-restful-cn.readthedocs.io/en/0.3.4/api.html)), and it has been registered automatically on the server.
-How? By [this line](https://github.com/theodo/bnp-onbaording-api/blob/master/src/server.py#L57)!
+How? By [this line](https://github.com/antkahn/flask-api-starter-kit/blob/master/src/server.py#L39)!
 It calls the `register_blueprint` method for each blueprint set in the `__init__.py` file of the `route` folder.
 
 We told our blueprint to use the `UserResource` when querried on the `/user` url.

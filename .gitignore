@@ -1,11 +1,6 @@
 __pycache__/
 *.py[cod]
-.Python
+.cache
 vendor/
-node_modules/
-env/
-build/
-develop-eggs/
-dist/
-downloads/
 *.log
+.vscode
