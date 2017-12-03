@@ -16,4 +16,4 @@ database:
 test:
     override:
         - flake8 ./src ./test
-        - python -m unittest
+        - python -m pytest --junitxml=$CIRCLE_TEST_REPORTS/junit/report.xml test/
