@@ -15,5 +15,5 @@ database:
         - python src/manage.py db upgrade
 test:
     override:
-        - flake8 ./src
+        - flake8 ./src ./test
         - python -m unittest

@@ -27,7 +27,10 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         response_json = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(response_json, {'user': {'age': 25, 'first_name': 'John', 'last_name': 'Doe'}})
+        self.assertEqual(
+            response_json,
+            {'user': {'age': 25, 'first_name': 'John', 'last_name': 'Doe'}}
+        )
 
     def test_create(self):
         """ The POST on `/user` should create an user """
@@ -41,7 +44,10 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         response_json = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(response_json, {'user': {'age': 30, 'first_name': 'John', 'last_name': 'Doe'}})
+        self.assertEqual(
+            response_json,
+            {'user': {'age': 30, 'first_name': 'John', 'last_name': 'Doe'}}
+        )
         self.assertEqual(User.query.count(), 1)
 
     def test_update(self):
@@ -57,6 +63,9 @@ class TestUser(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         response_json = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(response_json, {'user': {'age': 30, 'first_name': 'John', 'last_name': 'Doe'}})
+        self.assertEqual(
+            response_json,
+            {'user': {'age': 30, 'first_name': 'John', 'last_name': 'Doe'}}
+        )
         user = UserRepository.get(first_name='John', last_name='Doe')
         self.assertEqual(user.age, 30)

@@ -19,7 +19,9 @@ class TestSwagger(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_swagger_is_not_empty(self):
-        """ The GET on /spec should return an object with a non-empty paths property """
+        """
+        The GET on /spec should return a dict with a non-empty paths property
+        """
 
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", message="unclosed file")

@@ -11,7 +11,7 @@ tests:
 	docker-compose run --rm testserver
 
 lint:
-	docker-compose run --rm server bash -c \"python vendor/bin/flake8 ./src\"
+	docker-compose run --rm server bash -c "python -m flake8 ./src ./test"
 
 db/connect:
 	docker exec -it flaskapistarterkit_db_1 psql -Upostgres

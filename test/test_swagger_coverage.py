@@ -9,7 +9,15 @@ class TestSwaggerCoverage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = server.test_client()
-        cls.BANNED_RULES = ['/routes', '/status', '/spec', '/ping', '/specs', '/apidocs', '/static']
+        cls.BANNED_RULES = [
+            '/routes',
+            '/status',
+            '/spec',
+            '/ping',
+            '/specs',
+            '/apidocs',
+            '/static'
+        ]
         cls.THRESHOLD = 100
 
     def test_swagger_coverage(self):
@@ -20,11 +28,20 @@ class TestSwaggerCoverage(unittest.TestCase):
         swagger_specs = self.retrieve_swagger_specs()
         rules = self.filter_rules(self.client.application.url_map.iter_rules())
 
-        covered_methods, methods_total = self.retrieve_covered_methods_number(rules, swagger_specs)
+        (
+            covered_methods,
+            methods_total
+        ) = self.retrieve_covered_methods_number(rules, swagger_specs)
         coverage = int(100 * covered_methods / methods_total)
 
         end_color = 'green' if coverage == 100 else 'yellow'
-        self.color_print(end_color, str(covered_methods) + ' of ' + str(methods_total) + ' routes are swagged')
+        self.color_print(
+            end_color,
+            '%s of %s routes are swagged' % (
+                str(covered_methods),
+                str(methods_total)
+            )
+        )
 
         self.assertTrue(coverage >= self.THRESHOLD)
 
@@ -53,7 +70,10 @@ class TestSwaggerCoverage(unittest.TestCase):
                     swagger_specs[parsed_rule][method.lower()]
                     covered_methods += 1
                 except KeyError:
-                    self.color_print('red', 'Uncovered: ' + method + ' of route ' + parsed_rule)
+                    self.color_print(
+                        'red',
+                        'Uncovered: %s of route %s' % (method, parsed_rule)
+                    )
                     continue
 
         return (covered_methods, methods_total)
@@ -74,15 +94,28 @@ class TestSwaggerCoverage(unittest.TestCase):
         Replace '<' with '{' and '>' with '}'
         Remove arguments type
         """
-        return str(rule).replace('<', '{').replace('>', '}').replace('string:', '').replace('int:', '')
+        return (
+            str(rule)
+            .replace('<', '{')
+            .replace('>', '}')
+            .replace('string:', '')
+            .replace('int:', '')
+        )
 
     def filter_rules(self, rules):
         """ Filter rules that do not need to be documented """
         return [
             rule
             for rule in rules
-            if not any(banned_rule in str(rule) for banned_rule in self.BANNED_RULES)
+            if not self.is_banned_rule(rule)
         ]
+
+    def is_banned_rule(self, rule):
+        """ Check if rule should be banned """
+        return any(
+            banned_rule in str(rule)
+            for banned_rule in self.BANNED_RULES
+        )
 
     @staticmethod
     def color_print(color, message):
