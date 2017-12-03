@@ -1,0 +1,30 @@
+Create an user based on the sent information
+---
+tags:
+  - user
+parameters:
+  - name: last_name
+    in: path
+    type: string
+    description: the last name of the user
+  - name: first_name
+    in: path
+    type: string
+    description: the last name of the user
+  - name: body
+    in: body
+    schema:
+      type: object
+      properties:
+        age:
+          type: integer
+          description: The age of the user
+responses:
+  200:
+    description: The user was successfully created
+    schema:
+      example:
+        user:
+          last_name: Doe
+          first_name: John
+          age: 30

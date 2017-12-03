@@ -9,3 +9,4 @@ develop-eggs/
 dist/
 downloads/
 *.log
+.vscode
