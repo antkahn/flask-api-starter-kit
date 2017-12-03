@@ -10,11 +10,7 @@ class TestSwaggerCoverage(unittest.TestCase):
     def setUpClass(cls):
         cls.client = server.test_client()
         cls.BANNED_RULES = [
-            '/routes',
-            '/status',
             '/spec',
-            '/ping',
-            '/specs',
             '/apidocs',
             '/static'
         ]

@@ -37,7 +37,7 @@ Then install dependencies and check that it works
 $ make install      # Install the pip dependencies on the docker container
 $ make start        # Run the container containing your local python server
 ```
-If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/routes).
+If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/spec).
 
 The API runs locally on docker containers. You can easily change the python version you are willing to use [here](https://github.com/antkahn/flask-api-starter-kit/blob/master/docker-compose.yml#L4), by fetching a docker image of the python version you want.
 
@@ -93,8 +93,7 @@ The application structure presented in this boilerplate is grouped primarily by 
 │   │   └── user.py          # Rest verbs related to the user routes
 │   ├── routes               # Routes definitions and links to their associated resources
 │   │   ├── __init__.py      # Contains every blueprint of your API
-│   │   ├── user.py          # The blueprint related to the user
-│   │   └── routes.py        # The routes blueprints exposing your routes and HTTP verbs
+│   │   └── user.py          # The blueprint related to the user
 │   ├── swagger              # Resources documentation
 │   │   └── user             # Documentation of the user resource
 │   │       └── GET.yml      # Documentation of the GET method on the user resource
@@ -140,7 +139,7 @@ It will run the flake8 commands on your project in your server container, and di
 
 ## Swagger
 
-Your API might need a description of it's routes and how to interact with them.
+Your API needs a description of it's routes and how to interact with them.
 You can easily do that with the swagger package included in the starter kit.
 Simply add a docstring to the resources of your API like in the `user` example.
 The API description will be available [here](http://127.0.0.1:3000/application/spec).
