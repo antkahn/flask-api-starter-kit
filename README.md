@@ -17,11 +17,10 @@ Check it out if you want a quick tutorial on how to use Flask with this architec
 1. [Testing](#testing)
 1. [Lint](#lint)
 1. [Swagger](#swagger)
-1. [Deployment](#deployment)
 
 ## Dependencies
 
-You will need [docker](https://docs.docker.com/engine/installation/), [docker-compose](https://docs.docker.com/compose/install/) and [npm](https://docs.npmjs.com/getting-started/installing-node).
+You will need [docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/).
 
 ## Getting Started
 
@@ -35,8 +34,8 @@ $ cd <my-project-name>
 Then install dependencies and check that it works
 
 ```bash
-$ npm run server:install      # Install the pip dependencies on the docker container
-$ npm run server:run          # Run the container containing your local python server
+$ make install      # Install the pip dependencies on the docker container
+$ make start        # Run the container containing your local python server
 ```
 If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/routes).
 
@@ -44,21 +43,19 @@ The API runs locally on docker containers. You can easily change the python vers
 
 ## Commands
 
-While developing, you will probably rely mostly on `npm run server:run`; however, there are additional scripts at your disposal:
+While developing, you will probably rely mostly on `make start`; however, there are additional scripts at your disposal:
 
-|`npm run <script>`|Description|
+|`make <script>`|Description|
 |------------------|-----------|
-|`server:install`|Install the pip dependencies on the server's container.|
-|`server:up`|Run your local server in it's own docker container.|
-|`server:daemon`|Run your local server in it's own docker container as a daemon.|
-|`db:connect`|Connect to your docker database.|
-|`db:migrate`|Generate a database migration file using alembic, based on your model files.|
-|`db:upgrade`|Run the migrations until your database is up to date.|
-|`db:downgrade`|Downgrade your database by one migration.|
-|`test`|Run unit tests with unittest in it's own container.|
-|`lint`|Run pep8 and flake8 on the `src` directory.|
-|`deploy:prod`|Deploy your code onto your server using shipit.|
-|`rollback:prod`|Rollback your last deployment on the server using shipit.|
+|`install`|Install the pip dependencies on the server's container.|
+|`start`|Run your local server in it's own docker container.|
+|`daemon`|Run your local server in it's own docker container as a daemon.|
+|`db/connect`|Connect to your docker database.|
+|`db/migrate`|Generate a database migration file using alembic, based on your model files.|
+|`db/upgrade`|Run the migrations until your database is up to date.|
+|`db/downgrade`|Downgrade your database by one migration.|
+|`tests`|Run unit tests with unittest in it's own container.|
+|`lint`|Run flake8 on the `src` directory.|
 
 ## Database
 
@@ -66,7 +63,7 @@ The database is in [PostgreSql](https://www.postgresql.org/).
 
 Locally, you can connect to your database using :
 ```bash
-$ npm run bdd:connect
+$ make db/connect
 ```
 
 However, you will need before using this command to change the docker database container's name [here](https://github.com/antkahn/flask-api-starter-kit/blob/master/package.json#L6).
@@ -98,6 +95,9 @@ The application structure presented in this boilerplate is grouped primarily by 
 │   │   ├── __init__.py      # Contains every blueprint of your API
 │   │   ├── user.py          # The blueprint related to the user
 │   │   └── routes.py        # The routes blueprints exposing your routes and HTTP verbs
+│   ├── swagger              # Resources documentation
+│   │   └── user             # Documentation of the user resource
+│   │       └── GET.yml      # Documentation of the GET method on the user resource
 │   ├── util                 # Some helpfull, non-business Python functions for your project
 │   │   └── parse_params.py  # Wrapper for the resources to easily handle parameters
 │   ├── config.py            # Project configuration settings
@@ -111,8 +111,8 @@ The application structure presented in this boilerplate is grouped primarily by 
 To develop locally, here are your two options:
 
 ```bash
-$ npm run server:run           # Create the containers containing your python server in your terminal
-$ npm run server:daemon        # Create the containers containing your python server as a daemon
+$ make start           # Create the containers containing your python server in your terminal
+$ make daemon          # Create the containers containing your python server as a daemon
 ```
 
 The containers will reload by themselves as your source code is changed.
@@ -125,18 +125,18 @@ You can add objects in your database that will only be used in your tests, see e
 You can run your tests in their own container with the command:
 
 ```bash
-$ npm run test
+$ make tests
 ```
 
 ## Lint
 
-To lint your code using pep8 and flake8, just run in your terminal:
+To lint your code using flake8, just run in your terminal:
 
 ```bash
-$ npm run lint
+$ make lint
 ```
 
-It will run the pep8 and flake8 commands on your `./src` directory in your server container, and display any lint error you may have in your code.
+It will run the flake8 commands on your project in your server container, and display any lint error you may have in your code.
 
 ## Swagger
 
@@ -144,7 +144,3 @@ Your API might need a description of it's routes and how to interact with them.
 You can easily do that with the swagger package included in the starter kit.
 Simply add a docstring to the resources of your API like in the `user` example.
 The API description will be available [here](http://127.0.0.1:3000/application/spec).
-
-## Deployment
-
-Out of the box, this starter kit is deployable using Shipit. Simply change the configuration lines in the `./shipit.js` file.
