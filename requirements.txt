@@ -1,5 +1,4 @@
 alembic==0.7.4
-flake8==3.0.4
 flasgger==0.5.13
 Flask==0.10.1
 flask-marshmallow==0.4.0
@@ -10,7 +9,7 @@ Flask-Script==2.0.5
 itsdangerous==0.24
 marshmallow==1.2.2
 pep8==1.7.0
-psycopg2==2.5.4
+psycopg2==2.7.1
 pytz==2014.10
 requests==2.3.0
 setproctitle==1.1.9
