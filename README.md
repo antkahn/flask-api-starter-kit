@@ -48,13 +48,13 @@ While developing, you will probably rely mostly on `make start`; however, there 
 |`make <script>`|Description|
 |------------------|-----------|
 |`install`|Install the pip dependencies on the server's container.|
-|`start`|Run your local server in it's own docker container.|
-|`daemon`|Run your local server in it's own docker container as a daemon.|
+|`start`|Run your local server in its own docker container.|
+|`daemon`|Run your local server in its own docker container as a daemon.|
 |`db/connect`|Connect to your docker database.|
 |`db/migrate`|Generate a database migration file using alembic, based on your model files.|
 |`db/upgrade`|Run the migrations until your database is up to date.|
 |`db/downgrade`|Downgrade your database by one migration.|
-|`tests`|Run unit tests with unittest in it's own container.|
+|`tests`|Run unit tests with unittest in its own container.|
 |`lint`|Run flake8 on the `src` directory.|
 
 ## Database
