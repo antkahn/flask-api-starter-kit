@@ -3,7 +3,7 @@ Wrap parameters parsing
 As it's quite ugly and messy
 """
 from functools import wraps
-from flask.ext.restful import reqparse
+from flask_restful import reqparse
 
 
 def parse_params(*arguments):

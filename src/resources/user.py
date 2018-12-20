@@ -3,8 +3,8 @@ Define the REST verbs relative to the users
 """
 
 from flasgger import swag_from
-from flask.ext.restful import Resource
-from flask.ext.restful.reqparse import Argument
+from flask_restful import Resource
+from flask_restful.reqparse import Argument
 from flask.json import jsonify
 
 from repositories import UserRepository
