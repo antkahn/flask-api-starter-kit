@@ -8,6 +8,7 @@ This starter kit comes with a [tutorial](https://github.com/antkahn/flask-api-st
 Check it out if you want a quick tutorial on how to use Flask with this architecure.
 
 ## Table of Contents
+
 1. [Dependencies](#dependencies)
 1. [Getting Started](#getting-started)
 1. [Commands](#commands)
@@ -37,6 +38,7 @@ Then install dependencies and check that it works
 $ make install      # Install the pip dependencies on the docker container
 $ make start        # Run the container containing your local python server
 ```
+
 If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/spec).
 
 The API runs locally on docker containers. You can easily change the python version you are willing to use [here](https://github.com/antkahn/flask-api-starter-kit/blob/master/docker-compose.yml#L4), by fetching a docker image of the python version you want.
@@ -45,23 +47,25 @@ The API runs locally on docker containers. You can easily change the python vers
 
 While developing, you will probably rely mostly on `make start`; however, there are additional scripts at your disposal:
 
-|`make <script>`|Description|
-|------------------|-----------|
-|`install`|Install the pip dependencies on the server's container.|
-|`start`|Run your local server in it's own docker container.|
-|`daemon`|Run your local server in it's own docker container as a daemon.|
-|`db/connect`|Connect to your docker database.|
-|`db/migrate`|Generate a database migration file using alembic, based on your model files.|
-|`db/upgrade`|Run the migrations until your database is up to date.|
-|`db/downgrade`|Downgrade your database by one migration.|
-|`tests`|Run unit tests with unittest in it's own container.|
-|`lint`|Run flake8 on the `src` directory.|
+| `make <script>` | Description                                                                  |
+| --------------- | ---------------------------------------------------------------------------- |
+| `install`       | Install the pip dependencies on the server's container.                      |
+| `start`         | Run your local server in its own docker container.                           |
+| `daemon`        | Run your local server in its own docker container as a daemon.               |
+| `db/connect`    | Connect to your docker database.                                             |
+| `db/migrate`    | Generate a database migration file using alembic, based on your model files. |
+| `db/upgrade`    | Run the migrations until your database is up to date.                        |
+| `db/downgrade`  | Downgrade your database by one migration.                                    |
+| `test`          | Run unit tests with pytest in its own container.                             |
+| `coverage`      | Run test coverage using pytest-cov.                                          |
+| `lint`          | Run flake8 on the `src` and `test` directories.                              |
 
 ## Database
 
 The database is in [PostgreSql](https://www.postgresql.org/).
 
 Locally, you can connect to your database using :
+
 ```bash
 $ make db/connect
 ```
@@ -124,7 +128,7 @@ You can add objects in your database that will only be used in your tests, see e
 You can run your tests in their own container with the command:
 
 ```bash
-$ make tests
+$ make test
 ```
 
 ## Lint

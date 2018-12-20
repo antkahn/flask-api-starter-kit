@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.4-jessie-node
+      - image: circleci/postgres:9.4
+    environment:
+      - PYTHONPATH: src:test
+      - APPLICATION_POSTGRES_USER: postgres
+      - APPLICATION_POSTGRES_HOST: 127.0.0.1
+      - APPLICATION_POSTGRES_PORT: 5432
+      - APPLICATION_POSTGRES_NAME: application
+      - DEBUG_MODE: "True"
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - venv-{{ checksum "requirements-dev.txt" }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install Python requirements
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements-dev.txt
+      - save_cache:
+          key: venv-{{ checksum "requirements-dev.txt" }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "venv"
+      - run:
+          name: Install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.0
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Run Flake8
+          command: |
+            . venv/bin/activate
+            flake8 src test
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            python -m pytest --junitxml=test-reports/report.xml --cov-report term --cov-config setup.cfg --cov=src/ test/
+      - store_test_results:
+          path: test-reports

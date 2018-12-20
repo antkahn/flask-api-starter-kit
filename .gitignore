@@ -4,3 +4,5 @@ __pycache__/
 vendor/
 *.log
 .vscode
+.coverage
+coverage/

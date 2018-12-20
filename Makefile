@@ -1,20 +1,25 @@
+.PHONY: test coverage
+
 install:
-	docker-compose run --rm server pip install -r requirements-dev.txt --user --upgrade
+	docker-compose run --rm server pip install -r requirements-dev.txt --user --upgrade --no-warn-script-location
 
 start:
 	docker-compose up server
 
+coverage:
+	docker-compose run --rm testserver bash -c "python -m pytest --cov-report term --cov-report html:coverage --cov-config setup.cfg --cov=src/ test/"
+
 daemon:
 	docker-compose up -d server
 
-tests:
+test:
 	docker-compose run --rm testserver
 
 lint:
 	docker-compose run --rm server bash -c "python -m flake8 ./src ./test"
 
 db/connect:
-	docker exec -it flaskapistarterkit_db_1 psql -Upostgres
+	docker-compose exec db psql -Upostgres
 
 db/downgrade:
 	docker-compose run --rm server python src/manage.py db downgrade

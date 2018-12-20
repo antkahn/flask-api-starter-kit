@@ -1,39 +1,42 @@
-server:
-  env_file:
-    - .env
-  image: python:3.4
-  working_dir: /mnt
-  volumes:
-    - .:/mnt
-  links:
-   - db
-  ports:
-    - '3000:3000'
-  command: python src/server.py
+version: "2"
 
-dbdata:
-  image: busybox
-  volumes:
-  - /var/lib/postgresql/data
-db:
-  image: postgres:9.4
-  volumes_from:
-  - dbdata
+services:
+  server:
+    env_file:
+      - .env
+    image: python:3.4
+    working_dir: /mnt
+    volumes:
+      - .:/mnt
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    command: python src/server.py
 
-testserver:
-  env_file: .env
-  image: python:3.4
-  working_dir: /mnt
-  volumes:
-    - .:/mnt
-  links:
-    - testdb
-  ports:
-    - '5053:5053'
-  environment:
-    APPLICATION_PORT: 5053
-    APPLICATION_DB_CONTAINER: TESTDB
-  command: python -m pytest test/
+  dbdata:
+    image: busybox
+    volumes:
+      - /var/lib/postgresql/data
+  db:
+    image: postgres:9.4
+    volumes_from:
+      - dbdata
 
-testdb:
-  image: postgres:9.4
+  testserver:
+    env_file: .env
+    image: python:3.4
+    working_dir: /mnt
+    volumes:
+      - .:/mnt
+    depends_on:
+      - testdb
+    ports:
+      - 5053:5053
+    environment:
+      APPLICATION_PORT: 5053
+      APPLICATION_DB_CONTAINER: testdb
+    command: python -m pytest test/
+
+  testdb:
+    image: postgres:9.4
