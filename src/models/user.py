@@ -2,10 +2,10 @@
 Define the User model
 """
 from . import db
-from .abc import BaseModel
+from .abc import BaseModel, MetaBaseModel
 
 
-class User(db.Model, BaseModel):
+class User(db.Model, BaseModel, metaclass=MetaBaseModel):
     """ The User model """
     __tablename__ = 'user'
 

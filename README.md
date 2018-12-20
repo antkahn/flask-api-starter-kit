@@ -56,8 +56,9 @@ While developing, you will probably rely mostly on `make start`; however, there 
 | `db/migrate`    | Generate a database migration file using alembic, based on your model files. |
 | `db/upgrade`    | Run the migrations until your database is up to date.                        |
 | `db/downgrade`  | Downgrade your database by one migration.                                    |
-| `test`          | Run unit tests with unittest in its own container.                           |
-| `lint`          | Run flake8 on the `src` directory.                                           |
+| `test`          | Run unit tests with pytest in its own container.                             |
+| `coverage`      | Run test coverage using pytest-cov.                                          |
+| `lint`          | Run flake8 on the `src` and `test` directories.                              |
 
 ## Database
 
