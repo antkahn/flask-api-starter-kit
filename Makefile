@@ -1,3 +1,5 @@
+.PHONY: test
+
 install:
 	docker-compose run --rm server pip install -r requirements-dev.txt --user --upgrade --no-warn-script-location
 
@@ -7,7 +9,7 @@ start:
 daemon:
 	docker-compose up -d server
 
-tests:
+test:
 	docker-compose run --rm testserver
 
 lint:
