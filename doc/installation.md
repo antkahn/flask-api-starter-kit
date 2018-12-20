@@ -9,23 +9,21 @@ git co tutorial
 
 Install [docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/) if you don't already have them.
 
-
 ## Docker
 
 The API uses Docker in a dev environment.
 
 Run your first command:
+
 ```
 make install
 ```
 
 What that command does is:
- - Docker (through docker-compose) creates the python and the DB containers as configured in the `docker-compose.yml`.
- - Docker will install Python vendors in the container through [pip](https://pip.pypa.io/en/stable/).
- The vendors to install are listed in `requirements.txt`.
 
-FYI, the deployment command for the server does not use docker.
-Vendors will be installed in a [python virtual environment](https://virtualenv.pypa.io/en/stable/) to avoid collision.
+- Docker (through docker-compose) creates the python and the DB containers as configured in the `docker-compose.yml`.
+- Docker will install Python vendors in the container through [pip](https://pip.pypa.io/en/stable/).
+  The vendors to install are listed in `requirements.txt`.
 
 You can now start the server :
 

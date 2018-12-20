@@ -15,7 +15,7 @@ In the `routes` folder, create a `user.py` file containing:
 Defines the blueprint for the users
 """
 from flask import Blueprint
-from flask.ext.restful import Api
+from flask_restful import Api
 
 from resources import UserResource
 
@@ -25,6 +25,7 @@ Api(USER_BLUEPRINT).add_resource(UserResource, '/user')
 ```
 
 And add the following line in the `routes/__init__.py` file:
+
 ```python
 from .user import USER_BLUEPRINT
 ```
@@ -35,7 +36,7 @@ In the `resources` folder, create a `user.py` file containing:
 """
 Define the REST verbs relative to the users
 """
-from flask.ext.restful import Resource
+from flask_restful import Resource
 
 
 class UserResource(Resource):
@@ -48,6 +49,7 @@ class UserResource(Resource):
 ```
 
 And add the following line in the `resources/__init__.py` file:
+
 ```python
 from .user import UserResource
 ```
@@ -68,20 +70,23 @@ For example, we called our resource's method `get`, and when we call an HTTP GET
 This exists because our `UserResource` class inherit from the flask restful `Resource` class. This class handles all the complexity.
 
 And that's it ! So, when you want to create a new route:
- * Create a new resource
- * Create a new blueprint
- * Register it in the server by exporting it in the `__init__.py` of the route folder
 
+- Create a new resource
+- Create a new blueprint
+- Register it in the server by exporting it in the `__init__.py` of the route folder
 
 As you can see, each python files starts with documentation on the file. This is called a `docstring`.
 If you want to know more on the python standard for doctstrings, read [this](https://www.python.org/dev/peps/pep-0257/).
 You should start all your python files with a docstring explaining what they contain, and all your methods and classes should have a docstring, explaining what they do.
 
---------
+---
+
 ### Import and `__init__.py`
 
 Why do we need all those lines in those weird files?
+
 > And add the following line in the `routes/__init__.py` file:
+>
 > ```python
 > from .user import USER_BLUEPRINT
 > ```
@@ -93,16 +98,19 @@ It makes it possible to access the `USER_BLUEPRINT` variable in the `routes` nam
 
 Wait what?
 If you don't write that line, you would have to write everywhere else
+
 ```python
 from routes.user import USER_BLUEPRINT
 ```
+
 Now, you can simply do
+
 ```python
 from routes import USER_BLUEPRINT
 ```
 
 which will save you a lot of time in the long run!
 
-------
+---
 
 [Next step !](database.md)
