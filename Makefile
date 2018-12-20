@@ -18,6 +18,9 @@ test:
 lint:
 	docker-compose run --rm server bash -c "python -m flake8 ./src ./test"
 
+safety:
+	docker-compose run --rm server bash -c "python vendor/bin/safety check"
+
 db/connect:
 	docker-compose exec db psql -Upostgres
 

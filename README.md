@@ -59,6 +59,7 @@ While developing, you will probably rely mostly on `make start`; however, there 
 | `test`          | Run unit tests with pytest in its own container.                             |
 | `coverage`      | Run test coverage using pytest-cov.                                          |
 | `lint`          | Run flake8 on the `src` and `test` directories.                              |
+| `safety`        | Run safety to check if your vendors have security issues.                    |
 
 ## Database
 

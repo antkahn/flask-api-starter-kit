@@ -46,3 +46,8 @@ jobs:
             python -m pytest --junitxml=test-reports/report.xml --cov-report term --cov-config setup.cfg --cov=src/ test/
       - store_test_results:
           path: test-reports
+      - run:
+          name: Check for dependencies with known vulnerabilities
+          command: |
+            . venv/bin/activate
+            safety check
