@@ -1,8 +1,8 @@
 alembic==0.7.4
 flasgger==0.5.13
 Flask==1.0.2
-Flask-Migrate==1.2.0
-Flask-RESTful-TheodoFork==0.3.7
+Flask-Migrate==1.8.0
+Flask-RESTful==0.3.7
 Flask-SQLAlchemy==2.1
 Flask-Script==2.0.5
 itsdangerous==0.24
