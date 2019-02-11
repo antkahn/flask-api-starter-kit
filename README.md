@@ -148,3 +148,4 @@ Your API needs a description of it's routes and how to interact with them.
 You can easily do that with the swagger package included in the starter kit.
 Simply add a docstring to the resources of your API like in the `user` example.
 The API description will be available [here](http://127.0.0.1:3000/application/spec).
+The Swagger UI will be available [here](http://127.0.0.1:3000/application/apidocs/index.html).
