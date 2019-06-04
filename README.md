@@ -35,8 +35,8 @@ $ cd <my-project-name>
 Then install dependencies and check that it works
 
 ```bash
-$ make install      # Install the pip dependencies on the docker container
-$ make start        # Run the container containing your local python server
+$ make server.install      # Install the pip dependencies on the docker container
+$ make server.start        # Run the container containing your local python server
 ```
 
 If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/spec).
@@ -45,21 +45,25 @@ The API runs locally on docker containers. You can easily change the python vers
 
 ## Commands
 
-While developing, you will probably rely mostly on `make start`; however, there are additional scripts at your disposal:
+You can display availables make commands using `make`.
 
-| `make <script>` | Description                                                                  |
-| --------------- | ---------------------------------------------------------------------------- |
-| `install`       | Install the pip dependencies on the server's container.                      |
-| `start`         | Run your local server in its own docker container.                           |
-| `daemon`        | Run your local server in its own docker container as a daemon.               |
-| `db/connect`    | Connect to your docker database.                                             |
-| `db/migrate`    | Generate a database migration file using alembic, based on your model files. |
-| `db/upgrade`    | Run the migrations until your database is up to date.                        |
-| `db/downgrade`  | Downgrade your database by one migration.                                    |
-| `test`          | Run unit tests with pytest in its own container.                             |
-| `coverage`      | Run test coverage using pytest-cov.                                          |
-| `lint`          | Run flake8 on the `src` and `test` directories.                              |
-| `safety`        | Run safety to check if your vendors have security issues.                    |
+While developing, you will probably rely mostly on `make server.start`; however, there are additional scripts at your disposal:
+
+| `make <script>`      | Description                                                                  |
+| -------------------- | ---------------------------------------------------------------------------- |
+| `help`               | Display availables make commands                                             |
+| `server.install`     | Install the pip dependencies on the server's container.                      |
+| `server.start`       | Run your local server in its own docker container.                           |
+| `server.daemon`      | Run your local server in its own docker container as a daemon.               |
+| `server.upgrade`     | Upgrade pip packages interactively.                                          |
+| `database.connect`   | Connect to your docker database.                                             |
+| `database.migrate`   | Generate a database migration file using alembic, based on your model files. |
+| `database.upgrade`   | Run the migrations until your database is up to date.                        |
+| `database.downgrade` | Downgrade your database by one migration.                                    |
+| `test`               | Run unit tests with pytest in its own container.                             |
+| `test.coverage`      | Run test coverage using pytest-cov.                                          |
+| `test.lint`          | Run flake8 on the `src` and `test` directories.                              |
+| `test.safety`        | Run safety to check if your vendors have security issues.                    |
 
 ## Database
 
@@ -68,7 +72,7 @@ The database is in [PostgreSql](https://www.postgresql.org/).
 Locally, you can connect to your database using :
 
 ```bash
-$ make db/connect
+$ make database.connect
 ```
 
 However, you will need before using this command to change the docker database container's name [here](https://github.com/antkahn/flask-api-starter-kit/blob/master/package.json#L6).
@@ -115,8 +119,8 @@ The application structure presented in this boilerplate is grouped primarily by 
 To develop locally, here are your two options:
 
 ```bash
-$ make start           # Create the containers containing your python server in your terminal
-$ make daemon          # Create the containers containing your python server as a daemon
+$ make server.start           # Create the containers containing your python server in your terminal
+$ make server.daemon          # Create the containers containing your python server as a daemon
 ```
 
 The containers will reload by themselves as your source code is changed.
@@ -137,7 +141,7 @@ $ make test
 To lint your code using flake8, just run in your terminal:
 
 ```bash
-$ make lint
+$ make test.lint
 ```
 
 It will run the flake8 commands on your project in your server container, and display any lint error you may have in your code.
@@ -148,4 +152,4 @@ Your API needs a description of it's routes and how to interact with them.
 You can easily do that with the swagger package included in the starter kit.
 Simply add a docstring to the resources of your API like in the `user` example.
 The API description will be available [here](http://127.0.0.1:3000/application/spec).
-The Swagger UI will be available [here](http://127.0.0.1:3000/application/apidocs/index.html).
+The Swagger UI will be available [here](http://127.0.0.1:3000/apidocs/).
