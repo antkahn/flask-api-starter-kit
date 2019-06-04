@@ -3,6 +3,7 @@ Define an Abstract Base Class (ABC) for models
 """
 from datetime import datetime
 from weakref import WeakValueDictionary
+
 from sqlalchemy import inspect
 from sqlalchemy.orm import aliased
 
