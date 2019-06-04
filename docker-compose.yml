@@ -4,7 +4,7 @@ services:
   server:
     env_file:
       - .env
-    image: python:3.4
+    image: python:3.7
     working_dir: /mnt
     volumes:
       - .:/mnt
@@ -25,7 +25,7 @@ services:
 
   testserver:
     env_file: .env
-    image: python:3.4
+    image: python:3.7
     working_dir: /mnt
     volumes:
       - .:/mnt
