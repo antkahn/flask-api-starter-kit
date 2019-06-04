@@ -51,3 +51,13 @@ jobs:
           command: |
             . venv/bin/activate
             safety check
+      - run:
+          name: Check for files not formatted using Black
+          command: |
+            . venv/bin/activate
+            black --check src/ --exclude vendor/
+      - run:
+          name: Check for files without correct import order
+          command: |
+            . venv/bin/activate
+            isort -rc src/ test/ --skip vendor/ --skip src/models/__init__.py --check-only
