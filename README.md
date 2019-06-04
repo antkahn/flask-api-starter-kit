@@ -55,6 +55,7 @@ While developing, you will probably rely mostly on `make server.start`; however,
 | `server.install`     | Install the pip dependencies on the server's container.                      |
 | `server.start`       | Run your local server in its own docker container.                           |
 | `server.daemon`      | Run your local server in its own docker container as a daemon.               |
+| `server.upgrade`     | Upgrade pip packages interactively.                                          |
 | `database.connect`   | Connect to your docker database.                                             |
 | `database.migrate`   | Generate a database migration file using alembic, based on your model files. |
 | `database.upgrade`   | Run the migrations until your database is up to date.                        |
@@ -151,4 +152,4 @@ Your API needs a description of it's routes and how to interact with them.
 You can easily do that with the swagger package included in the starter kit.
 Simply add a docstring to the resources of your API like in the `user` example.
 The API description will be available [here](http://127.0.0.1:3000/application/spec).
-The Swagger UI will be available [here](http://127.0.0.1:3000/application/apidocs/index.html).
+The Swagger UI will be available [here](http://127.0.0.1:3000/apidocs/).

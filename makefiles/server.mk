@@ -18,3 +18,6 @@ server.stop: ## Start server in its docker container
 
 server.logs: ## Display server logs
 	tail -f server.log
+
+server.upgrade: ## Upgrade pip dependencies
+	docker-compose exec server bash -c "pip-upgrade requirements.txt requirements-dev.txt --skip-virtualenv-check"
