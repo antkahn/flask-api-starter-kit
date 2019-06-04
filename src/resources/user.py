@@ -15,47 +15,31 @@ class UserResource(Resource):
     """ Verbs relative to the users """
 
     @staticmethod
-    @swag_from('../swagger/user/GET.yml')
+    @swag_from("../swagger/user/GET.yml")
     def get(last_name, first_name):
         """ Return an user key information based on his name """
         user = UserRepository.get(last_name=last_name, first_name=first_name)
-        return jsonify({'user': user.json})
+        return jsonify({"user": user.json})
 
     @staticmethod
     @parse_params(
-        Argument(
-            'age',
-            location='json',
-            required=True,
-            help='The age of the user.'
-        ),
+        Argument("age", location="json", required=True, help="The age of the user.")
     )
-    @swag_from('../swagger/user/POST.yml')
+    @swag_from("../swagger/user/POST.yml")
     def post(last_name, first_name, age):
         """ Create an user based on the sent information """
         user = UserRepository.create(
-            last_name=last_name,
-            first_name=first_name,
-            age=age
+            last_name=last_name, first_name=first_name, age=age
         )
-        return jsonify({'user': user.json})
+        return jsonify({"user": user.json})
 
     @staticmethod
     @parse_params(
-        Argument(
-            'age',
-            location='json',
-            required=True,
-            help='The age of the user.'
-        ),
+        Argument("age", location="json", required=True, help="The age of the user.")
     )
-    @swag_from('../swagger/user/PUT.yml')
+    @swag_from("../swagger/user/PUT.yml")
     def put(last_name, first_name, age):
         """ Update an user based on the sent information """
         repository = UserRepository()
-        user = repository.update(
-            last_name=last_name,
-            first_name=first_name,
-            age=age
-        )
-        return jsonify({'user': user.json})
+        user = repository.update(last_name=last_name, first_name=first_name, age=age)
+        return jsonify({"user": user.json})

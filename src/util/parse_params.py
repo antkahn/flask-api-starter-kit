@@ -11,8 +11,10 @@ def parse_params(*arguments):
     Parse the parameters
     Forward them to the wrapped function as named parameters
     """
+
     def parse(func):
         """ Wrapper """
+
         @wraps(func)
         def resource_verb(*args, **kwargs):
             """ Decorated function """
@@ -21,5 +23,7 @@ def parse_params(*arguments):
                 parser.add_argument(argument)
             kwargs.update(parser.parse_args())
             return func(*args, **kwargs)
+
         return resource_verb
+
     return parse
