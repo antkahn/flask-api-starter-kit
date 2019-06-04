@@ -20,4 +20,4 @@ server.logs: ## Display server logs
 	tail -f server.log
 
 server.upgrade: ## Upgrade pip dependencies
-	docker-compose exec server bash -c "pip-upgrade requirements.txt requirements-dev.txt --skip-virtualenv-check"
+	docker-compose run --rm server bash -c "python vendor/bin/pip-upgrade requirements.txt requirements-dev.txt --skip-virtualenv-check"

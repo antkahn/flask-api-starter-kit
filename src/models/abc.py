@@ -3,6 +3,7 @@ Define an Abstract Base Class (ABC) for models
 """
 from datetime import datetime
 from weakref import WeakValueDictionary
+
 from sqlalchemy import inspect
 from sqlalchemy.orm import aliased
 
@@ -26,7 +27,7 @@ class MetaBaseModel(db.Model.__class__):
         return alias
 
 
-class BaseModel():
+class BaseModel:
     """ Generalize __init__, __repr__ and to_json
         Based on the models columns """
 
@@ -36,11 +37,14 @@ class BaseModel():
     def __repr__(self):
         """ Define a base way to print models
             Columns inside `print_filter` are excluded """
-        return '%s(%s)' % (self.__class__.__name__, {
-            column: value
-            for column, value in self._to_dict().items()
-            if column not in self.print_filter
-        })
+        return "%s(%s)" % (
+            self.__class__.__name__,
+            {
+                column: value
+                for column, value in self._to_dict().items()
+                if column not in self.print_filter
+            },
+        )
 
     @property
     def json(self):
@@ -48,7 +52,8 @@ class BaseModel():
             Columns inside `to_json_filter` are excluded """
         return {
             column: value
-            if not isinstance(value, datetime) else value.strftime('%Y-%m-%d')
+            if not isinstance(value, datetime)
+            else value.strftime("%Y-%m-%d")
             for column, value in self._to_dict().items()
             if column not in self.to_json_filter
         }
