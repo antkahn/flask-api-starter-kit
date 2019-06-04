@@ -17,6 +17,7 @@ Check it out if you want a quick tutorial on how to use Flask with this architec
 1. [Development](#development)
 1. [Testing](#testing)
 1. [Lint](#lint)
+1. [Format](#format)
 1. [Swagger](#swagger)
 
 ## Dependencies
@@ -64,6 +65,8 @@ While developing, you will probably rely mostly on `make server.start`; however,
 | `test.coverage`      | Run test coverage using pytest-cov.                                          |
 | `test.lint`          | Run flake8 on the `src` and `test` directories.                              |
 | `test.safety`        | Run safety to check if your vendors have security issues.                    |
+| `format.black`       | Format python files using Black.                                             |
+| `format.isort`       | Order python imports using isort.                                            |
 
 ## Database
 
@@ -145,6 +148,15 @@ $ make test.lint
 ```
 
 It will run the flake8 commands on your project in your server container, and display any lint error you may have in your code.
+
+## Format
+
+The code is formatted using [Black](https://github.com/python/black) and [Isort](https://pypi.org/project/isort/). You have the following commands to your disposal:
+
+```bash
+$ make format.black # Apply Black on every file
+$ make format.isort # Apply Isort on every file
+```
 
 ## Swagger
 
