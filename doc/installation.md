@@ -28,7 +28,7 @@ What that command does is:
 You can now start the server :
 
 ```
-make start
+make daemon
 ```
 
 You can verify that your server is running by going on the url : `http://127.0.0.1:3000/application/spec`
